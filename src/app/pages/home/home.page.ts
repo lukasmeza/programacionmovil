@@ -41,11 +41,11 @@ export class HomePage {
   // Helper functions
   async showQrToast() {
     const toast = await this.toastCtrl.create({
-      message: `Open ${this.scanResult}?`,
+      // message: `Open ${this.scanResult}?`,
       position: 'top',
       buttons: [
         {
-          text: 'Open',
+          // text: 'Open',
           handler: () => {
             window.open(this.scanResult, '_system', 'location=yes');
           },

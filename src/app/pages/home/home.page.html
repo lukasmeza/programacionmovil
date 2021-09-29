@@ -24,12 +24,7 @@
     Escanear codigo QR
   </ion-button>
 
-  <ion-button
-    expand="full"
-    (click)="reset()"
-    color="warning"
-    *ngIf="scanResult"
-  >
+  <ion-button expand="full" (click)="reset()" color="warning" *ngIf="scanResult">
     <ion-icon slot="start" name="refresh"></ion-icon>
     Limpiar
   </ion-button>
@@ -41,14 +36,9 @@
   <canvas #canvas hidden></canvas>
 
   <!-- Stop our scanner preview if active -->
-  <ion-button
-    expand="full"
-    (click)="stopScan()"
-    color="danger"
-    *ngIf="scanActive"
-  >
+  <ion-button expand="full" (click)="stopScan()" color="danger" *ngIf="scanActive">
     <ion-icon slot="start" name="close"></ion-icon>
-    Stop scan
+    Parar escanner
   </ion-button>
 
   <ion-card *ngIf="scanResult">

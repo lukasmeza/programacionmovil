@@ -1,14 +1,9 @@
 
+
 <ion-content>
 
   <div class="ion-padding-vertical">
-    <ion-card class="ion-text-center ion-padding-vertical">
-      <ion-card-title class="ion-text-center">
-        <ion-label>
-          <h2>¡Bienvenido!</h2>
-        </ion-label>
-      </ion-card-title>
-
+    <img src="assets/img/logo.jpg" alt="" id="img">
       <ion-card-content>
         <ion-item>
           <ion-label position="floating">Usuario</ion-label>
@@ -23,15 +18,14 @@
         </ion-item>
         <ion-row>
           <ion-col size="12">
-            <ion-button shape="block" color="dark" (click)="ingresar()">Ingresar</ion-button>
+            <ion-button id="button" shape="block" color="dark" (click)="ingresar()">Ingresar</ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>
-
+      <div id="password">
       <ion-label>
-        <br />
         <a routerLink="/password">¿Has olvidado tu contraseña?</a>
       </ion-label>
-    </ion-card>
-  </div>
+    </div>
+   </div>
 </ion-content>
