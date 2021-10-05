@@ -1,16 +1,26 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { ToastController, LoadingController, Platform } from '@ionic/angular';
+
+import { getAttrsForDirectiveMatching } from '@angular/compiler/src/render3/view/util';
+import { AfterViewInit, Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController, LoadingController, Platform, AlertController } from '@ionic/angular';
+import { $ } from 'protractor';
 import jsQR from 'jsqr';
+import { Usuario } from 'src/app/model/Usuario';
+import { Animation, AnimationController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+
+export class HomePage implements OnInit, AfterViewInit {
+  @ViewChild('titulo', { read: ElementRef, static: true}) titulo: ElementRef;
   @ViewChild('video', { static: false }) video: ElementRef;
   @ViewChild('canvas', { static: false }) canvas: ElementRef;
   @ViewChild('fileinput', { static: false }) fileinput: ElementRef;
+
+  public usuario: Usuario;
 
   canvasElement: any;
   videoElement: any;
@@ -22,20 +32,45 @@ export class HomePage {
   constructor(
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
-    private plt: Platform
+    private plt: Platform,
+    private activeroute: ActivatedRoute,
+    private router: Router,
+    private animationController: AnimationController
   ) {
+
     const isInStandaloneMode = () =>
       'standalone' in window.navigator && window.navigator['standalone'];
     if (this.plt.is('ios') && isInStandaloneMode()) {
       console.log('I am a an iOS PWA!');
-      // E.g. hide the scan functionality!
-    }
+      // E.g. hide the scan functionality!   
+    };
+
+    this.activeroute.queryParams.subscribe(params => {       
+      if (this.router.getCurrentNavigation().extras.state) { 
+        this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
+      } else {
+        this.router.navigate(['/login']);
+      }
+    });
   }
 
-  ngAfterViewInit() {
+  public ngOnInit() {
+  }
+
+  ngAfterViewInit(): void {
     this.canvasElement = this.canvas.nativeElement;
     this.canvasContext = this.canvasElement.getContext('2d');
     this.videoElement = this.video.nativeElement;
+
+    const animation = this.animationController
+      .create()
+      .addElement(this.titulo.nativeElement)
+      .iterations(Infinity)
+      .duration(6000)
+      .fromTo('transform', 'translate(-100%)', 'translate(100%)')
+      .fromTo('opacity', 1, 0.6);
+
+    animation.play();
   }
 
   // Helper functions

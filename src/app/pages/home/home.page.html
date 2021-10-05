@@ -1,12 +1,21 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Cerrar Sesion</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title #titulo class="ion-text-left ion-text">
+      <div>
+        Registro DUOC
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-content [fullscreen]="true" class="ion-padding-horizontal">
+  <ion-title class="ion-padding-top">
+    <ion-label>
+        <h1 class="ion-text-center">¡Bienvenido!</h1>
+        <p *ngIf="usuario">Usuario: {{ usuario.nombreUsuario }}</p>
+    </ion-label>
+  </ion-title>
+  
 <ion-content>
 
   <!-- Trigger the file input -->

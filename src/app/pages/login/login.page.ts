@@ -11,10 +11,7 @@ import { Usuario } from 'src/app/model/Usuario';
 export class LoginPage implements OnInit {
   public usuario: Usuario;
 
-  constructor(
-    private router: Router,
-    private toastController: ToastController
-  ) {
+  constructor(private router: Router, private toastController: ToastController) {
     this.usuario = new Usuario();
     this.usuario.nombreUsuario = '';
     this.usuario.password = '';
@@ -30,7 +27,7 @@ export class LoginPage implements OnInit {
     this.mostrarMensaje('¡Bienvenido!');
     const navigationExtras: NavigationExtras = {
       state: {
-        usuario: this.usuario,
+        usuario: this.usuario
       },
     };
     this.router.navigate(['/home'], navigationExtras);

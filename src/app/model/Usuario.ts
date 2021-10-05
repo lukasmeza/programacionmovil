@@ -21,7 +21,7 @@ export class Usuario {
         return 'La contraseña debe ser numérica.';
       }
     }
-    if (this.password.length === 4) {
+    if (this.password.length < 4 || this.password.length > 4) {
       return 'La contraseña debe ser numérica de 4 dígitos.';
     }
     return '';
