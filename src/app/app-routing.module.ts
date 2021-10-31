@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+
 
 const routes: Routes = [
   {
@@ -19,6 +21,10 @@ const routes: Routes = [
     path: 'password',
     loadChildren: () => import('./pages/password/password.module').then( m => m.PasswordPageModule)
   },
+ {
+   path: '**', component: PageNotFoundComponent
+ },
+
 ];
 
 @NgModule({
