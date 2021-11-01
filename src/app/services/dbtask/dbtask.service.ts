@@ -26,7 +26,7 @@ export class DBTaskService {
    */
   createTables(): Promise<any> {
     let tables = `
-    CREATE TABLE IF NOT EXISTS sesion_data
+    CREATE TABLE IF NOT EXISTS session_data
     (
       user_name TEXT PRIMARY KEY NOT NULL,
       password INTEGER NOT NULL,
@@ -38,9 +38,9 @@ export class DBTaskService {
   /**
    * Retorna si existe un usuario activo o no.
    */
-  sesionActive() {
+  sessionActive() {
     // Se desarrolla la consulta
-    let sql = `SELECT user_name,active FROM sesion_data WHERE active=1 LIMIT 1`;
+    let sql = `SELECT user_name,active FROM session_data WHERE active=1 LIMIT 1`;
     // Se ejecuta la consulta y no le pasamos parametros [value,value1,...]
     return (
       this.db
@@ -54,34 +54,34 @@ export class DBTaskService {
   }
   /**
    * Función que valida la existencia del usuario que esta iniciando sesión
-   * @param sesion Datos de inicio de sesión Usuario y Password
+   * @param session Datos de inicio de sesión Usuario y Password
    */
-  getSesionData(sesion: any) {
-    let sql = `SELECT user_name, active FROM sesion_data
+  getSessionData(session: any) {
+    let sql = `SELECT user_name, active FROM session_data
     WHERE user_name=? AND password=? LIMIT 1`;
     return this.db
-      .executeSql(sql, [sesion.Usuario, sesion.Password])
+      .executeSql(sql, [session.Usuario, session.Password])
       .then((response) => {
         return Promise.resolve(response.rows.item(0));
       });
   }
   /**
    * Función que crea un nuevo registro de inicio de sesión
-   * @param sesion Datos de inicio de sesión Usuario, Password y Active
+   * @param session Datos de inicio de sesión Usuario, Password y Active
    */
-  createSesionData(sesion: any) {
-    let sql = `INSERT INTO sesion_data(user_name,password,active)
+  createSessionData(session: any) {
+    let sql = `INSERT INTO session_data(user_name,password,active)
     VALUES(?,?,?)`;
     return this.db
-      .executeSql(sql, [sesion.Usuario, sesion.Password, sesion.Active])
+      .executeSql(sql, [session.Usuario, session.Password, session.Active])
       .then((response) => {
         return Promise.resolve(response.rows.item(0));
       });
   }
-  updateSesionData(sesion: any) {
-    let sql = `UPDATE sesion_data
+  updateSessionData(session: any) {
+    let sql = `UPDATE session_data
     SET active=?
     WHERE user_name=?`;
-    return this.db.executeSql(sql, [sesion.active, sesion.user_name]);
+    return this.db.executeSql(sql, [session.active, session.user_name]);
   }
 }
