@@ -21,9 +21,15 @@ const routes: Routes = [
     path: 'password',
     loadChildren: () => import('./pages/password/password.module').then( m => m.PasswordPageModule)
   },
+  
+  {
+    path: 'apiclient',
+    loadChildren: () => import('./pages/apiclient/apiclient.module').then( m => m.ApiclientPageModule)
+  },
   {
     path: '**', component: PageNotFoundComponent
   },
+
 ];
 
 @NgModule({
