@@ -7,6 +7,7 @@ import { $ } from 'protractor';
 import jsQR from 'jsqr';
 import { Usuario } from 'src/app/model/Usuario';
 import { Animation, AnimationController } from '@ionic/angular';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 
 @Component({
   selector: 'app-home',
@@ -35,6 +36,7 @@ export class HomePage implements OnInit, AfterViewInit {
     private plt: Platform,
     private activeroute: ActivatedRoute,
     private router: Router,
+    private qrScanner: QRScanner,
     private animationController: AnimationController
   ) {
 
@@ -55,6 +57,8 @@ export class HomePage implements OnInit, AfterViewInit {
   }
 
   public ngOnInit() {
+    this.qrScanner.prepare()
+      .then((status: QRScannerStatus) => status.authorized);
   }
 
   ngAfterViewInit(): void {

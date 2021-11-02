@@ -21,10 +21,9 @@ const routes: Routes = [
     path: 'password',
     loadChildren: () => import('./pages/password/password.module').then( m => m.PasswordPageModule)
   },
- {
-   path: '**', component: PageNotFoundComponent
- },
-
+  {
+    path: '**', component: PageNotFoundComponent
+  },
 ];
 
 @NgModule({

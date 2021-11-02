@@ -1,9 +1,19 @@
-<ion-toolbar color="primary">
+<ion-header><ion-toolbar color="primary">
   <ion-title #titulo class="ion-text-left ion-text">
     <div>
-      Error 404, page not found
+      ERROR 404
     </div>
   </ion-title>
 </ion-toolbar>
+</ion-header>
 
-<!-- Con ionic cordova run browser no funciona el 404 -->
+<ion-content [fullscreen]="true" class="ion-padding-horizontal">
+  <ion-title class="ion-padding-top">
+    <ion-label>
+        <h1 class="ion-text-center">¡Oops, ha ocurrido un error!</h1>
+        <p>¡Esta pagina no existe!</p>
+    </ion-label>
+  </ion-title>  
+<ion-content>
+
+  <!-- Con ionic cordova run browser no funciona el 404 -->
