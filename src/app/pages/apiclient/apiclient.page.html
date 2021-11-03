@@ -2,7 +2,7 @@
 
   <ion-toolbar mode="ios">
     <ion-title class="tituloPrincipal">
-      ¡Foro TODAY!
+      ¡Foro!
     </ion-title>
   </ion-toolbar>
 
@@ -47,8 +47,8 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col><ion-button shape="round" expand="block" (click)="limpiarPublicacion()">Limpiar</ion-button></ion-col>
-        <ion-col><ion-button shape="round" expand="block" (click)="guardarPublicacion()">Guardar</ion-button></ion-col>
+        <ion-col><ion-button id="button" shape="round" expand="block" (click)="limpiarPublicacion()">Limpiar</ion-button></ion-col>
+        <ion-col><ion-button id="button1" shape="round" expand="block" (click)="guardarPublicacion()">Guardar</ion-button></ion-col>
       </ion-row>
     </ion-grid>
 
@@ -69,11 +69,11 @@
       {{p.body}}
     </ion-card-content>
 
-    <ion-button (click)="editarPublicacion(p)">
+    <ion-button id="edit" (click)="editarPublicacion(p)">
       <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>
     </ion-button>
 
-    <ion-button (click)="eliminarPublicacion(p)">
+    <ion-button id="botar" (click)="eliminarPublicacion(p)">
       <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
     </ion-button>
 

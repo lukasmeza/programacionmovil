@@ -34,6 +34,7 @@
     "@ionic/storage": "^3.0.6",
     "cordova-android": "9.1.0",
     "jsqr": "^1.4.0",
+    "native-run": "^1.5.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="dark">
+  <ion-toolbar id="toolbar" >
 
     
       <ion-buttons slot="start">
@@ -8,7 +8,7 @@
 
 
     <ion-title #titulo class="ion-text-left ion-text">
-      <div>
+      <div >
         Registro DUOC
       </div>
     </ion-title>
@@ -28,7 +28,7 @@
 
   <!-- Trigger the file input -->
 
-  <ion-button color="dark" expand="full" (click)="startScan()">
+  <ion-button id="button2" expand="full" (click)="startScan()">
     <ion-icon slot="start" name="qr-scanner"></ion-icon>
     Escanear código QR
   </ion-button>
