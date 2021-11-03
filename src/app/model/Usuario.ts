@@ -1,6 +1,7 @@
 export class Usuario {
   public nombreUsuario = '';
   public password = '';
+  public email = '';
 
   public validarNombreUsuario(): string {
     if (this.nombreUsuario.trim() === '') {
@@ -30,4 +31,15 @@ export class Usuario {
   public validarUsuario(): string {
     return this.validarNombreUsuario() || this.validarPassword();
   }
+
+  public validarEmail(): string{
+    if (this.email.trim() === '') {
+      return 'Favor escriba correo válido.';
+    }
+    if (!(this.email.includes('@' || '.'))) {
+      return 'Correo con carácteres incorrectos.';
+    }
+  return 'Ingresado correctamente.';
+  }
 }
+
