@@ -13,16 +13,17 @@
           <ion-label position="floating">Usuario</ion-label>
           <ion-input
             type="text"
-            [(ngModel)]="usuario.nombreUsuario"
+            [(ngModel)]="login.Usuario"
           ></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password" [(ngModel)]="usuario.password"></ion-input>
+          <ion-input type="password" [(ngModel)]="login.Password"></ion-input>
         </ion-item>
         <ion-row>
           <ion-col size="12">
-            <ion-button shape="block" id="button" (click)="ingresar()">Ingresar</ion-button>
+            <ion-button shape="block" (click)="ingresar()">Ingresar</ion-button>
+            <ion-button shape="block" (click)="registrar()">Registrarse</ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>
