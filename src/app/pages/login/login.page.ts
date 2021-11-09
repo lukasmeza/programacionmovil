@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
 import { ToastController, AlertController } from '@ionic/angular';
 // import { Usuario } from 'src/app/model/Usuario';
 
-import { DBTaskService } from "../../services/dbtask/dbtask.service";
+import { DBTaskService } from '../../services/dbtask/dbtask.service';
+import { Router, NavigationExtras } from '@angular/router';
 import { Storage } from '@ionic/storage';
-import { AuthenticationService } from "../../services/authentication/authentication.service";
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
   
   // public usuario: Usuario;
 
-  constructor(private router: Router, 
+  constructor(private router: Router,
     public  toastController: ToastController,
     public dbtaskService: DBTaskService,
     public alertController: AlertController,
@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
     else{
       this.presentToast("Falta: " + this.field);
     }
-    
+
     // this.mostrarMensaje('¡Bienvenido!');
     // const navigationExtras: NavigationExtras = {
     //   state: {
@@ -74,10 +74,10 @@ export class LoginPage implements OnInit {
 
   createSessionData(login: any){
     if(this.validateModel(login)){
-      
+
       let copy = Object.assign({}, login);
       copy.Active=1;
-      
+
       this.dbtaskService.createSessionData(copy).then((data)=>{
         this.presentToast("Bienvenido!");
         this.storage.set("USER_DATA",data);
@@ -114,10 +114,10 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
-//   async mostrarMensaje(mensaje: string, duracion?: number) {
+//   async mostrarMensaje(mensaje: string, duration?: number) {
 //     const toast = await this.toastController.create({
 //       message: mensaje,
-//       duration: duracion ? duracion : 2000,
+//       duration: duration ? duration : 2000,
 //     });
 //     toast.present();
 //   }
