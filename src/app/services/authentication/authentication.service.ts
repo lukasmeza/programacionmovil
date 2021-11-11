@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 import { ToastController } from '@ionic/angular';
+import { BehaviorSubject } from 'rxjs';
 import { DBTaskService } from '../dbtask/dbtask.service';
 
 @Injectable({
@@ -27,7 +27,8 @@ export class AuthenticationService {
 
   //validamos si existe un usuario activo
   isLogged(){
-    this.storage.get('USER_DATA').then((response)=>{
+    this.storage.get('USER_DATA').
+    then((response)=>{
       console.log(response);
       if(response!=null){
         this.authState.next(true);
@@ -40,7 +41,8 @@ export class AuthenticationService {
   logout(){
     this.storage.get('USER_DATA').then((data)=>{
       data.active=0;
-      this.dbtaskService.updateSessionData(data).then((response)=>{
+      this.dbtaskService.updateSessionData(data)
+      .then((response)=>{
         if(response.rowsAffected>=1){
           this.storage.remove('USER_DATA');
           this.router.navigate(['login']);
