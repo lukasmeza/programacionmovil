@@ -15,13 +15,15 @@ import { AuthenticationService } from '../../services/authentication/authenticat
 
 export class LoginPage implements OnInit {
 
-  login:any={
-      Usuario:"",
-      Password:""
-  }
+  login: any={
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      Usuario:'',
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      Password:''
+  };
 
-  field:string="";
-  
+  field='';
+
   // public usuario: Usuario;
 
   constructor(private router: Router,
@@ -46,7 +48,7 @@ export class LoginPage implements OnInit {
       this.authenticationService.login(this.login);
     }
     else{
-      this.presentToast("Falta: " + this.field);
+      this.presentToast('Falta: ' + this.field);
     }
 
     // this.mostrarMensaje('¡Bienvenido!');
@@ -75,27 +77,30 @@ export class LoginPage implements OnInit {
   createSessionData(login: any){
     if(this.validateModel(login)){
 
+      // eslint-disable-next-line prefer-const
       let copy = Object.assign({}, login);
       copy.Active=1;
 
       this.dbtaskService.createSessionData(copy).then((data)=>{
-        this.presentToast("Bienvenido!");
-        this.storage.set("USER_DATA",data);
+        this.presentToast('Bienvenido!');
+        this.storage.set('USER_DATA',data);
         this.router.navigate(['home']);
       }).catch((error)=>{
-        this.presentToast("El usuario ya existe");
-      })
+        this.presentToast('El usuario ya existe');
+      });
     }
     else {
-      this.presentToast("Falta: "+this.field);
+      this.presentToast('Falta: '+this.field);
     }
   }
 
-  validateModel(model:any){
+  validateModel(model: any){
 
+    // eslint-disable-next-line no-var
     for (var [key, value] of Object.entries(model)) {
 
-      if(value=="") {
+      // eslint-disable-next-line eqeqeq
+      if(value=='') {
         this.field=key;
         return false;
       }
@@ -104,10 +109,10 @@ export class LoginPage implements OnInit {
     return true;
   }
 
-  async presentToast(message:string, duration?:number){
+  async presentToast(message: string, duration?: number){
     const toast = await this.toastController.create(
       {
-        message:message,
+        message,
         duration:duration?duration:2000
       }
     );
@@ -126,14 +131,15 @@ export class LoginPage implements OnInit {
     console.log('ionViewDidEnter');
 
     this.dbtaskService.sessionActive().then((data)=>{
+      // eslint-disable-next-line eqeqeq
       if(data!=undefined){
-        this.storage.set("USER_DATA",data);
+        this.storage.set('USER_DATA',data);
         this.router.navigate(['login']);
       }
     }).catch((error)=>{
       console.error(error);
       this.router.navigate(['login']);
-    })
+    });
   }
 
 
@@ -148,7 +154,7 @@ export class LoginPage implements OnInit {
         }, {
           text: 'SI',
           handler: () => {
-            this.createSessionData(this.login)
+            this.createSessionData(this.login);
           }
         }
       ]
