@@ -52,13 +52,13 @@ export class HomePage implements OnInit, AfterViewInit {
       // E.g. hide the scan functionality!
     };
 
-    this.activeRoute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
-      } else {
-        this.router.navigate(['/login']);
-      }
-    });
+    // this.activeRoute.queryParams.subscribe(params => {
+    //   if (this.router.getCurrentNavigation().extras.state) {
+    //     this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
+    //   } else {
+    //     this.router.navigate(['/login']);
+    //   }
+    // });
   }
 
   public ngOnInit() {
@@ -216,4 +216,5 @@ export class HomePage implements OnInit, AfterViewInit {
   logout(){
     this.authenticationService.logout();
   }
+
 }
