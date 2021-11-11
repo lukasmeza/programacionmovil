@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController, AlertController } from '@ionic/angular';
 
-import { DBTaskService } from '../../services/dbtask/dbtask.service'
+import { DBTaskService } from '../../services/dbtask/dbtask.service';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
@@ -12,98 +12,104 @@ import { AuthenticationService } from '../../services/authentication/authenticat
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  
-  login:any={
-    Usuario:"",
-    Password:""
-  }
- 
-  field:string="";
-  
+
+  login: any={
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    Usuario:'',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    Password:''
+  };
+
+  field='';
+
   constructor(public toastController: ToastController,
     public dbtaskService: DBTaskService,
     public alertController: AlertController,
     private router: Router,
     private storage: Storage,
-    public authenticationSerive:AuthenticationService) {}
+    public authenticationService: AuthenticationService) {}
   ngOnInit() {}
- 
+
   ingresar(){
-   
+
     if(this.validateModel(this.login)){
-      this.authenticationSerive.login(this.login);
+      this.authenticationService.login(this.login);
     }
     else{
-      this.presentToast("Falta: "+this.field);
+      this.presentToast('Falta: '+this.field);
     }
   }
 
-  
+
   registrar(){
-    this.createSesionData(this.login);
+    this.createSessionData(this.login);
   }
-  /**
+  /*
    * Función que genera (registra) una nueva sesión
-   * @param login 
+   * @param login
    */
-  createSesionData(login: any) {
-    if(this.validateModel(login)){ 
+  createSessionData(login: any) {
+    if(this.validateModel(login)){
+      // eslint-disable-next-line prefer-const
       let copy = Object.assign({},login);
-      copy.Active=1; 
-      this.dbtaskService.createSessionData(copy) 
-      .then((data)=>{ 
-        this.presentToast("Bienvenido"); 
-        this.storage.set("USER_DATA",data);  
+      copy.Active=1;
+      this.dbtaskService.createSessionData(copy)
+      .then((data)=>{
+        this.presentToast('Bienvenido');
+        this.storage.set('USER_DATA',data);
         this.router.navigate(['home']);
       })
       .catch((error)=>{
-        this.presentToast("El usuario ya existe");
-      })
+        this.presentToast('El usuario ya existe');
+      });
     }
     else{
-      this.presentToast("Falta: "+this.field);
+      this.presentToast('Falta: '+this.field);
     }
   }
-  
-  validateModel(model:any){
-    
+
+  validateModel(model: any){
+
+    // eslint-disable-next-line no-var
     for (var [key, value] of Object.entries(model)) {
-     
-      if (value=="") {
+
+      // eslint-disable-next-line eqeqeq
+      if (value=='') {
         this.field=key;
         return false;
       }
     }
     return true;
   }
-  /**
+  /*
    * Muestra un toast al usuario
    * @param message Mensaje a presentar al usuario
    * @param duration Duración el toast, este es opcional
    */
-  async presentToast(message:string, duration?:number){
+  async presentToast(message: string, duration?: number){
     const toast = await this.toastController.create(
       {
-        message:message,
+        message,
         duration:duration?duration:2000
       }
     );
     toast.present();
   }
-  
+
   ionViewWillEnter(){
     console.log('ionViewDidEnter');
       this.dbtaskService.sessionActive()
       .then((data)=>{
+        // eslint-disable-next-line eqeqeq
         if(data!=undefined){
-          this.storage.set("USER_DATA",data); 
+          this.storage.set('USER_DATA',data);
           this.router.navigate(['home']);
         }
       })
       .catch((error)=>{
         console.error(error);
         this.router.navigate(['login']);
-      })
+      });
   }
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
@@ -116,7 +122,7 @@ export class LoginPage implements OnInit {
         }, {
           text: 'SI',
           handler: () => {
-            this.createSesionData(this.login)
+            this.createSessionData(this.login);
           }
         }
       ]
