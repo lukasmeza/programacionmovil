@@ -3,14 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-//import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-//import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { IonicStorageModule } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage'
 import { SQLite } from '@ionic-native/sqlite/ngx';
+
 import { DBTaskService } from './services/dbtask/dbtask.service';
 import { AuthGuardService } from './services/auth-guard/auth-guard.service';
 import { AuthenticationService } from './services/authentication/authentication.service';
@@ -22,23 +23,16 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule,
-    IonicModule.forRoot(),
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    IonicStorageModule.forRoot()],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,BrowserAnimationsModule,
+    HttpClientModule,IonicStorageModule.forRoot()],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    //StatusBar,
-    //SplashScreen,
+    StatusBar,
+    SplashScreen,
     SQLite,
     DBTaskService,
     AuthGuardService,
     AuthenticationService,
-    QRScanner,
-    Storage
-  ],
-  bootstrap: [AppComponent],
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy, },QRScanner],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

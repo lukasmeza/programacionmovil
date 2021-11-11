@@ -9,6 +9,9 @@ import { Usuario } from 'src/app/model/Usuario';
 import { Animation, AnimationController } from '@ionic/angular';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 
+import { DBTaskService } from '../../services/dbtask/dbtask.service'
+import { AuthenticationService} from '../../services/authentication/authentication.service'
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -37,7 +40,9 @@ export class HomePage implements OnInit, AfterViewInit {
     private activeroute: ActivatedRoute,
     private router: Router,
     private qrScanner: QRScanner,
-    private animationController: AnimationController
+    private animationController: AnimationController,
+    public dbtaskService: DBTaskService,
+    public authenticationSerive:AuthenticationService
   ) {
 
     const isInStandaloneMode = () =>
@@ -193,5 +198,22 @@ export class HomePage implements OnInit, AfterViewInit {
       }
     };
     img.src = URL.createObjectURL(file);
+  }
+
+
+  // estoeeeee
+  /**
+   * Antes de que se muestre la visual
+   * se redirecciona a la url especifica
+   */
+  // ionViewWillEnter(){
+  //   this.router.navigate(['home']);
+  // }
+  /**
+   * Función que permite cerrar la sesión actual
+   * actualiza el sesion_data de SQLite
+   */
+  logout(){
+    this.authenticationSerive.logout();
   }
 }
