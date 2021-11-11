@@ -1,25 +1,26 @@
 <ion-app>
-  <ion-menu side="start" menuId="first" contentId="main" type="push">
-    <ion-header>
-      <ion-toolbar id="menu">
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
+    <ion-menu side="start" menuId="first" contentId="main" type="push">
+      <ion-header>
+        <ion-toolbar id="menu">
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          
+          <ion-item routerLink="/apiclient">
+            <!-- <ion-icon name="information-circle"></ion-icon> -->
+              Foro
+          </ion-item>
         
-        <ion-item routerLink="/apiclient">
-          <!-- <ion-icon name="information-circle"></ion-icon> -->
-            Foro
-        </ion-item>
-      
-        <ion-item>
-          <!-- <ion-icon name="log-out"></ion-icon> -->
-          Cerrar Sesion
-        </ion-item>
-
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-  <ion-router-outlet  id="main"></ion-router-outlet>
-</ion-app>
+          <ion-item>
+            <!-- <ion-icon name="log-out"></ion-icon> -->
+            Cerrar Sesion
+          </ion-item>
+  
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet  id="main"></ion-router-outlet>
+  </ion-app>
+  

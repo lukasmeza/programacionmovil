@@ -206,9 +206,9 @@ export class HomePage implements OnInit, AfterViewInit {
    * Antes de que se muestre la visual
    * se redirection a la url especifica
    */
-  // ionViewWillEnter(){
-  //   this.router.navigate(['home']);
-  // }
+  ionViewWillEnter(){
+    this.router.navigate(['home']);
+  }
   /**
    * Función que permite cerrar la sesión actual
    * actualiza el session_data de SQLite
