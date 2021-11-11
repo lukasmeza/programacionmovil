@@ -91,20 +91,20 @@ export class LoginPage implements OnInit {
     toast.present();
   }
   
-  ionViewWillEnter(){
-    console.log('ionViewDidEnter');
-      this.dbtaskService.sessionActive()
-      .then((data)=>{
-        if(data!=undefined){
-          this.storage.set("USER_DATA",data); 
-          this.router.navigate(['home']);
-        }
-      })
-      .catch((error)=>{
-        console.error(error);
-        this.router.navigate(['login']);
-      })
-  }
+  // ionViewWillEnter(){
+  //   console.log('ionViewDidEnter');
+  //     this.dbtaskService.sessionActive()
+  //     .then((data)=>{
+  //       if(data!=undefined){
+  //         this.storage.set("USER_DATA",data); 
+  //         this.router.navigate(['home']);
+  //       }
+  //     })
+  //     .catch((error)=>{
+  //       console.error(error);
+  //       this.router.navigate(['login']);
+  //     })
+  // }
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
       header: 'Creación de Usuario',

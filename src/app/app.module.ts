@@ -11,14 +11,20 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { IonicStorageModule } from '@ionic/storage'
 import { SQLite } from '@ionic-native/sqlite/ngx';
+
 import { DBTaskService } from './services/dbtask/dbtask.service';
 import { AuthGuardService } from './services/auth-guard/auth-guard.service';
 import { AuthenticationService } from './services/authentication/authentication.service';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,IonicStorageModule.forRoot()],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,BrowserAnimationsModule,
+    HttpClientModule,IonicStorageModule.forRoot()],
   providers: [
     StatusBar,
     SplashScreen,
@@ -26,8 +32,7 @@ import { AuthenticationService } from './services/authentication/authentication.
     DBTaskService,
     AuthGuardService,
     AuthenticationService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
-  ],
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy, },QRScanner],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

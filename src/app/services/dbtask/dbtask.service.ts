@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SQLiteObject } from '@ionic-native/sqlite/ngx';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class DBTaskService {
   /**

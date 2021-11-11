@@ -15,6 +15,13 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-buttons slot="primary">
+  <ion-button (click)="logout()" color="danger" fill="outline">
+    Salir
+    <ion-icon slot="end" name="log-out-outline"></ion-icon>
+  </ion-button>
+</ion-buttons>
+
 <ion-content [fullscreen]="true" class="ion-padding-horizontal">
   <ion-title class="ion-padding-top">
     <ion-label>
@@ -26,7 +33,7 @@
   
 <ion-content>
 
-  <!-- Trigger the file input -->
+ 
 
   <ion-button id="button2" expand="full" (click)="startScan()">
     <ion-icon slot="start" name="qr-scanner"></ion-icon>
@@ -38,13 +45,12 @@
     Limpiar
   </ion-button>
 
-  <!-- Shows our camera stream -->
+
   <video #video [hidden]="!scanActive" width="100%"></video>
 
-  <!-- Used to render the camera stream images -->
   <canvas #canvas hidden></canvas>
 
-  <!-- Stop our scanner preview if active -->
+  
   <ion-button expand="full" (click)="stopScan()" color="danger" *ngIf="scanActive">
     <ion-icon slot="start" name="close"></ion-icon>
     Parar escanner
