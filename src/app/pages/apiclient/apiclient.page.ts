@@ -1,4 +1,4 @@
-import { APIClientService } from 'src/app/services/apiclient/apiclient.service'
+import { APIClientService } from 'src/app/services/apiclient/apiclient.service';
 import { Component, OnInit, ɵisDefaultChangeDetectionStrategy } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 
@@ -29,8 +29,8 @@ export class ApiclientPage {
  };
 
  // Esta propiedad se usa para mantener el listado de "Publicaciones recientes". El listado
- // se mantiene siempre actualizado en la página, ya que el "ion-list" matiene todos
- // "ion-item" con los datos de la interpolación de los campos. Los registros de las
+ // se mantiene siempre actualizado en la página, ya que el "ion-list" mantiene todos
+ // "ion-item" con los datos de la interpolation de los campos. Los registros de las
  // publicaciones son actualizados por medio de la directiva *ngFor="let p of publicaciones".
  publicaciones: any;
 
@@ -83,7 +83,7 @@ export class ApiclientPage {
 
  // El siguiente método sirve para configurar (o asignar) los valores de las
  // cajas de texto para agregar o modificar una Publicación. La propiedad
- // "this.publicacion" se despliega como interpolación en las cajas de Título y Cuerpo.
+ // "this.publicacion" se despliega como interpolation en las cajas de Título y Cuerpo.
  // El método en su segunda parte muestra los datos de la publicación que no se ven,
  // estos son: el id del usuario y el id de la publicación. Estos datos no se deben
  // mostrar porque sólo son datos de control, sin embargo como estamos depurando la
@@ -104,7 +104,7 @@ export class ApiclientPage {
    this.publicacion.name = name;
 
    // mostrar los datos de control, que sirven para saber si se trata de una
-   // nueva pubicación o de una ya existente que se está editando actualmente.
+   // nueva publicacion o de una ya existente que se está editando actualmente.
 
    const uid = userId === null? 'no seleccionado' : userId;
    const pid = pubId === null? 'nueva' : pubId;
@@ -167,7 +167,7 @@ export class ApiclientPage {
  // se trata de una publicación nueva, pero en caso de que tenga valor se trata
  // de la edición de una Publicación ya existente. El valor de "this.publicacion.id"
  // se usa como dato de control para saber si hay que crear o actualizar. Cada vez
- // que un susuario presiona el botón de lápiz para editar una publicación, se llena el
+ // que un usuario presiona el botón de lápiz para editar una publicación, se llena el
  // valor de "this.publicacion.id" con número de publicación correspondiente al
  // item seleccionado en la lista.
 
@@ -241,8 +241,8 @@ export class ApiclientPage {
  // ya que sólo de esta forma el programa se puede dar cuenta de cuál publicación es la
  // que hay que actualizar. El Id de usuario se almacena en la propiedad
  // "this.publicacion.userId" y se actualiza cada vez que el usuario decide cambiar
- // su nombre de "Publicador" en el "ion-select" (combobox de usuarios). Cuando
- // un usuario cambia de "Publicador" en el combobox se activa el evento
+ // su nombre de "Publicador" en el "ion-select" (combo box de usuarios). Cuando
+ // un usuario cambia de "Publicador" en el combo box se activa el evento
  // "cambiarUsuario($event: number)" que recibe el Id del usuario seleccionado
  // por medio del parámetro $event.
 

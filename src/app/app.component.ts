@@ -4,7 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { SQLite } from '@ionic-native/sqlite/ngx'
+import { SQLite } from '@ionic-native/sqlite/ngx';
 import { DBTaskService } from './services/dbtask/dbtask.service';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     public dbTaskService: DBTaskService,
     public sqlite: SQLite,
-    public authenticationService:AuthenticationService,
+    public authenticationService: AuthenticationService,
     public router: Router
   ) {
     this.initializeApp();
@@ -52,6 +52,6 @@ export class AppComponent {
       this.dbTaskService.setDatabase(db);
       this.dbTaskService.createTables();
     }) // Si todo sale bien, muestra por consola el log del db
-    .catch(error=>{console.error('sadasd');}); // Si sale algo mal, muestra por consola el error
+    .catch(error=>{console.error('Error DB');}); // Si sale algo mal, muestra por consola el error
   }
 }

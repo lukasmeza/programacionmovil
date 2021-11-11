@@ -19,52 +19,52 @@ export class AuthenticationService {
     private storage: Storage,
     public dbtaskService: DBTaskService,
     public toastController: ToastController
-  ) 
+  )
   {
-    this.isLogged(); 
+    this.isLogged();
   }
 
-  
+
   //validamos si existe un usuario activo
   isLogged(){
-    this.storage.get("USER_DATA").then((response)=>{
-      console.log(response)
+    this.storage.get('USER_DATA').then((response)=>{
+      console.log(response);
       if(response!=null){
-        this.authState.next(true)
+        this.authState.next(true);
       }
-    })
+    });
   }
 
 
-  //esta funcion cierra la sesion y actualiza los datos de SQLite
+  //esta función cierra la sesión y actualiza los datos de SQLite
   logout(){
     this.storage.get('USER_DATA').then((data)=>{
       data.active=0;
       this.dbtaskService.updateSessionData(data).then((response)=>{
         if(response.rowsAffected>=1){
-          this.storage.remove("USER_DATA");
+          this.storage.remove('USER_DATA');
           this.router.navigate(['login']);
           this.authState.next(false);
         }
       })
-      .catch((error)=>console.error(error))
+      .catch((error)=>console.error(error));
     });
   }
 
   //verificamos que exista una session en login
-  login(login:any){
+  login(login: any){
     this.dbtaskService.getSessionData(login).then((data)=>{
       //en caso de que data sea undefined es porque no retorno credenciales correctas
       //lo cual indicamos con un toast
       if(data===undefined){
-        this.presentToast("Credenciales Incorrectas");
+        this.presentToast('Credenciales Incorrectas');
       }else{
         //ponemos el active de los datos como 1 (boolean true)
         data.active=1;
-        //actualizamos la sesion de usuario
+        //actualizamos la sesión de usuario
         this.dbtaskService.updateSessionData(data).then((response)=>{
           //guardamos los datos de USER_DATA
-          this.storage.set("USER_DATA", data);
+          this.storage.set('USER_DATA', data);
           //ponemos authState como TRUE
           this.authState.next(true);
           //se navega a la pagina home
@@ -72,17 +72,17 @@ export class AuthenticationService {
         });
       }
     })
-    //capturamos cualquier error que ocurra durante la funcion
+    //capturamos cualquier error que ocurra durante la función
     .catch((error)=>{
       console.log(error);
     });
   }
 
   //Presenta el mensaje de error llamado desde otras funciones
-  async presentToast(message:string, duration?:number){
+  async presentToast(message: string, duration?: number){
     const toast = await this.toastController.create(
       {
-        message:message,
+        message,
         duration:duration?duration:2000
       }
     );

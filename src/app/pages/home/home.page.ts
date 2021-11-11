@@ -1,4 +1,3 @@
-
 import { getAttrsForDirectiveMatching } from '@angular/compiler/src/render3/view/util';
 import { AfterViewInit, Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,8 +8,8 @@ import { Usuario } from 'src/app/model/Usuario';
 import { Animation, AnimationController } from '@ionic/angular';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 
-import { DBTaskService } from '../../services/dbtask/dbtask.service'
-import { AuthenticationService} from '../../services/authentication/authentication.service'
+import { DBTaskService } from '../../services/dbtask/dbtask.service';
+import { AuthenticationService} from '../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +21,7 @@ export class HomePage implements OnInit, AfterViewInit {
   @ViewChild('titulo', { read: ElementRef, static: true}) titulo: ElementRef;
   @ViewChild('video', { static: false }) video: ElementRef;
   @ViewChild('canvas', { static: false }) canvas: ElementRef;
-  @ViewChild('fileinput', { static: false }) fileinput: ElementRef;
+  @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
 
   public usuario: Usuario;
 
@@ -37,23 +36,24 @@ export class HomePage implements OnInit, AfterViewInit {
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private plt: Platform,
-    private activeroute: ActivatedRoute,
+    private activeRoute: ActivatedRoute,
     private router: Router,
     private qrScanner: QRScanner,
     private animationController: AnimationController,
     public dbtaskService: DBTaskService,
-    public authenticationSerive:AuthenticationService
+    public authenticationService: AuthenticationService
   ) {
 
     const isInStandaloneMode = () =>
+      // eslint-disable-next-line @typescript-eslint/dot-notation
       'standalone' in window.navigator && window.navigator['standalone'];
     if (this.plt.is('ios') && isInStandaloneMode()) {
       console.log('I am a an iOS PWA!');
-      // E.g. hide the scan functionality!   
+      // E.g. hide the scan functionality!
     };
 
-    this.activeroute.queryParams.subscribe(params => {       
-      if (this.router.getCurrentNavigation().extras.state) { 
+    this.activeRoute.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
         this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
       } else {
         this.router.navigate(['/login']);
@@ -115,7 +115,7 @@ export class HomePage implements OnInit, AfterViewInit {
 
     this.videoElement.srcObject = stream;
     // Required for Safari
-    this.videoElement.setAttribute('playsinline', true);
+    this.videoElement.setAttribute('playsInline', true);
 
     this.loading = await this.loadingCtrl.create({});
     await this.loading.present();
@@ -167,12 +167,13 @@ export class HomePage implements OnInit, AfterViewInit {
   }
 
   captureImage() {
-    this.fileinput.nativeElement.click();
+    this.fileInput.nativeElement.click();
   }
 
   handleFile(files: FileList) {
     const file = files.item(0);
 
+    // eslint-disable-next-line no-var
     var img = new Image();
     img.onload = () => {
       this.canvasContext.drawImage(
@@ -201,19 +202,18 @@ export class HomePage implements OnInit, AfterViewInit {
   }
 
 
-  // estoeeeee
   /**
    * Antes de que se muestre la visual
-   * se redirecciona a la url especifica
+   * se redirection a la url especifica
    */
   // ionViewWillEnter(){
   //   this.router.navigate(['home']);
   // }
   /**
    * Función que permite cerrar la sesión actual
-   * actualiza el sesion_data de SQLite
+   * actualiza el session_data de SQLite
    */
   logout(){
-    this.authenticationSerive.logout();
+    this.authenticationService.logout();
   }
 }

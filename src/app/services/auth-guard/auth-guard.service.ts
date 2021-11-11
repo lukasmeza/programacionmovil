@@ -8,11 +8,11 @@ import { AuthenticationService } from '../authentication/authentication.service'
 export class AuthGuardService implements CanActivate {
 
   constructor(
-    public authenticationService:AuthenticationService,
-    public router:Router
+    public authenticationService: AuthenticationService,
+    public router: Router
   ) { }
 
-  //damos un return llamando la funcion isAuthenticated desde authenticationService
+  //damos un return llamando la función isAuthenticated desde authenticationService
   //esto retorna positivo si el usuario tiene las credenciales y permite acceso
   canActivate(): boolean {
     return this.authenticationService.isAuthenticated();
