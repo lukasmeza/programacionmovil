@@ -32,14 +32,12 @@ export class Usuario {
     return this.validarNombreUsuario() || this.validarPassword();
   }
 
+
   public validarEmail(): string{
     if (this.email.trim() === '') {
-      return 'Favor escriba correo válido.';
+      return 'Favor ingrese un usuario válido.';
     }
-    if (!(this.email.includes('@' || '.'))) {
-      return 'Correo con carácteres incorrectos.';
-    }
-  return 'Ingresado correctamente.';
+  return 'Contraseña reestablecida.';
   }
 }
 
