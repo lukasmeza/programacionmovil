@@ -155,7 +155,7 @@ export class HomePage implements OnInit, AfterViewInit {
       if (code) {
         this.scanActive = false;
         this.scanResult = code.data;
-        this.showQrToast();
+        //this.showQrToast();
       } else {
         if (this.scanActive) {
           requestAnimationFrame(this.scan.bind(this));
