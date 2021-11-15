@@ -17,7 +17,7 @@ export class PasswordPage implements OnInit {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   RegisterForm: FormGroup;
 
-  valueUser: any;
+  valuefromuser: any;
 
   constructor(
     private alertCtrl: AlertController,
@@ -58,12 +58,12 @@ export class PasswordPage implements OnInit {
    * Muestra un toast al usuario
    *
    * @param mensaje
-   * @param duration
+   * @param duracion
    */
-   async mostrarMensaje(mensaje: string, duration?: number) {
+   async mostrarMensaje(mensaje: string, duracion?: number) {
     const toast = await this.toastController.create({
       message: mensaje,
-      duration: duration ? duration : 2000,
+      duration: duracion ? duracion : 2000,
     });
     toast.present();
   }
@@ -71,7 +71,7 @@ export class PasswordPage implements OnInit {
 
 
   submit(){
-    console.log('value is = ', this.valueUser);
+    console.log('value is = ', this.valuefromuser);
   }
 
 

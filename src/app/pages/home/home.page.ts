@@ -52,13 +52,13 @@ export class HomePage implements OnInit, AfterViewInit {
       // E.g. hide the scan functionality!
     };
 
-    // this.activeRoute.queryParams.subscribe(params => {
-    //   if (this.router.getCurrentNavigation().extras.state) {
-    //     this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
-    //   } else {
-    //     this.router.navigate(['/login']);
-    //   }
-    // });
+    this.activeRoute.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
+      } else {
+        this.router.navigate(['/login']);
+      }
+    });
   }
 
   public ngOnInit() {
@@ -155,7 +155,7 @@ export class HomePage implements OnInit, AfterViewInit {
       if (code) {
         this.scanActive = false;
         this.scanResult = code.data;
-        //this.showQrToast();
+        this.showQrToast();
       } else {
         if (this.scanActive) {
           requestAnimationFrame(this.scan.bind(this));
@@ -206,9 +206,9 @@ export class HomePage implements OnInit, AfterViewInit {
    * Antes de que se muestre la visual
    * se redirection a la url especifica
    */
-  ionViewWillEnter(){
-    this.router.navigate(['home']);
-  }
+  // ionViewWillEnter(){
+  //   this.router.navigate(['home']);
+  // }
   /**
    * Función que permite cerrar la sesión actual
    * actualiza el session_data de SQLite
@@ -216,5 +216,4 @@ export class HomePage implements OnInit, AfterViewInit {
   logout(){
     this.authenticationService.logout();
   }
-
 }

@@ -100,8 +100,6 @@ export class LoginPage implements OnInit {
     console.log('ionViewDidEnter');
       this.dbtaskService.sessionActive()
       .then((data)=>{
-
-        // El siguiente comentario solo esta para que ESLint no marque un error irrelevante
         // eslint-disable-next-line eqeqeq
         if(data!=undefined){
           this.storage.set('USER_DATA',data);
@@ -113,9 +111,6 @@ export class LoginPage implements OnInit {
         this.router.navigate(['login']);
       });
   }
-
-
-
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
       header: 'Creación de Usuario',
