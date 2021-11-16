@@ -108,8 +108,9 @@ export class ApiclientPage {
 
    const uid = userId === null? 'no seleccionado' : userId;
    const pid = pubId === null? 'nueva' : pubId;
-   this.publicacionSeleccionada = `(userId: ${uid} - pubId: ${pid})`;
- }
+  //  this.publicacionSeleccionada = `(userId: ${uid} - pubId: ${pid})`
+   ;
+   }
 
  // El siguiente método se subscribe a la Promesa que entrega nuestra Api Cliente
  // mediante el método "this.api.getUsuarios()" de modo que una vez que haya
