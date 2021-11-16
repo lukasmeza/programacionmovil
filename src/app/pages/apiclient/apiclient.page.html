@@ -17,18 +17,19 @@
 
   <ion-toolbar>
     <ion-card>
-      <ion-item lines="none">
+      <ion-item lines="none" *ngIf="usuario"> 
         <span>
-          Usuario:&nbsp;
+          Usuario: {{ usuario.name }}
         </span>
-        <ion-select placeholder="Seleccione su usuario"
+        <!-- <ion-select placeholder="Seleccione su usuario"
             class="ion-float-right"
             [(ngModel)]="selectedUserId"
-            (ngModelChange)="cambiarUsuario($event)">
-          <ion-select-option *ngFor="let u of usuarios" [value]="u.id">
-            {{u.name}}
-          </ion-select-option>
-        </ion-select>
+            (ngModelChange)="cambiarUsuario($event)"> -->
+          <!-- <ion-select-option *ngFor="let u of usuarios" [value]="u.id">
+            Leanne Graham
+          </ion-select-option> -->
+            
+        <!-- </ion-select> -->
       </ion-item>
     </ion-card>
   </ion-toolbar>

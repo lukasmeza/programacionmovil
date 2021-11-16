@@ -36,7 +36,9 @@ export class PasswordPage implements OnInit {
     }
 
     this.ingresar2();
-  this.mostrarMensaje('');
+
+    this.mostrarMensaje('');
+
     const navigationExtras: NavigationExtras = {
       state: {
         email: this.usuario

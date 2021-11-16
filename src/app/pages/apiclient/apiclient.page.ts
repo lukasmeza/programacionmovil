@@ -16,6 +16,9 @@ export class ApiclientPage {
  // usuarios que se despliegan en la lista de usuarios "Publicadores" de "ion-select".
  usuarios: any;
 
+ // Nueva propiedad para cargar exclusivamente el primer usuario
+ usuario: any;
+
  // Esta propiedad se usa para mantener los datos de la nueva publicación o de la
  // edición de una publicación ya existente. Para ello la propiedad se liga usando
  // ngModel con las cajas de texto de: Título y Cuerpo, junto con respaldar los datos
@@ -58,11 +61,14 @@ export class ApiclientPage {
  // 4. Cargar la lista de "Publicaciones recientes".
 
  ionViewWillEnter() {
-   this.selectedUserId = null;
+   this.selectedUserId = 1;
    this.setPublicacion(null, null, '', '', '');
+   this.getUsuario();
    this.getUsuarios();
    this.getPublicaciones();
- }
+   this.selectedUserId = 1;
+   this.cambiarUsuario(1);
+  }
 
  // Este método se ejecuta cada vez que el usuario cambia el nombre del "Publicador",
  // en el control gráfico de "ion-select", de modo de mantener sincronizadas las
@@ -120,6 +126,10 @@ export class ApiclientPage {
 
  getUsuarios() {
    this.api.getUsuarios().subscribe(data => this.usuarios = data);
+ }
+
+ getUsuario() {
+  this.api.getUsuario(1).subscribe(data => this.usuario = data);
  }
 
  // El siguiente método llena la lista de "Publicaciones recientes".
