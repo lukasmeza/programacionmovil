@@ -61,6 +61,14 @@ export class DBTaskService {
     WHERE user_name=? AND password=? LIMIT 1`;
     return this.db?.executeSql(sql, [session.Usuario, session.Password]).then((response) => Promise.resolve(response.rows.item(0)));
   }
+
+  getUserData(session: any){
+    // eslint-disable-next-line prefer-const
+    let sql = `SELECT user_name FROM session_data
+    WHERE user_name=? LIMIT 1`;
+    return this.db?.executeSql(sql,[session]).then(response=>Promise.resolve(response.rows.item(0)));
+  }
+
   /*
    * Función que crea un nuevo registro de inicio de sesión
    * @param session Datos de inicio de sesión Usuario, Password y Active
